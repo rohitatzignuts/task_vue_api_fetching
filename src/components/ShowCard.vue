@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
     showPoster: string;
     showName: string;
     avgRating: number;
@@ -7,6 +7,11 @@ defineProps<{
     summary: string;
     officialSite: string;
 }>()
+
+// Function
+const goTo = () => {
+    window.open(props?.officialSite)
+}
 </script>
 
 <template>
@@ -21,7 +26,7 @@ defineProps<{
     :src=showPoster
     cover
     >
-    <v-card-title color="primary">{{ showName }}</v-card-title>
+    <v-card-title color="white">{{ showName }}</v-card-title>
     </v-img>
 
     <v-card-subtitle class="pt-4">
@@ -37,19 +42,19 @@ defineProps<{
         {{ genres }}
     </v-chip>
 
-    <div>{{ summary }}</div>
+    <div v-html="summary" />
     </v-card-text>
 
     <v-card-actions>
-    <v-btn density="compact" plain variant="text" color="teal-accent-4"
-        >
-        <a :href='officialSite'></a>
+    <v-btn color="success" @click="goTo">
+        goto
+        <!-- <a :href='officialSite' class="link"></a> -->
     </v-btn>
     </v-card-actions>
     </v-card>
 </template>
 <style scoped>
-a{
-    color: black;
+.link{
+    /* color: black; */
 }
 </style>

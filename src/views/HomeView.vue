@@ -20,6 +20,7 @@ const fetchList = async (value: string) => {
     try {
         const response = await window.fetch(`http://api.tvmaze.com/search/shows?q=${value}`);
         const data = await response.json();
+
         return data.map((item: { show: any; }) => item.show); 
     } catch (error) {
         console.error('Error fetching shows:', error);
@@ -37,7 +38,7 @@ function handleSearch(value :string){
 </script>
 
 <template>
-  <v-container>
+  <VContainer>
     <ShowSearch 
       @searchShow="handleSearch"
     />
@@ -50,7 +51,7 @@ function handleSearch(value :string){
         :key="show.id"
         cols="auto">
         <ShowCard 
-        :showPoster="show.image.original || show.image.medium"
+        :showPoster="show?.image?.original || show?.image?.medium"
         :showName="show.name"
         :avgRating="show.rating.rating"
         :genres="show.genres.map(genre => genre)"
@@ -59,5 +60,5 @@ function handleSearch(value :string){
       />
       </v-col>
     </v-row>
-  </v-container>
+  </VContainer>
 </template>

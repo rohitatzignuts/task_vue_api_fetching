@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref , defineEmits} from 'vue';
 
 const loaded = ref(false);
 const loading = ref(false);
-const searchValue = ref('the office')
-const emits = defineEmits(['searchShow'])
+const searchValue = ref<string>('the office')
+const emit = defineEmits(['searchShow'])
+
 const onClick = () => {
     loading.value = true;
 
@@ -13,8 +14,9 @@ const onClick = () => {
         loaded.value = true;
     }, 2000);
 };
+
 function handleSubmit(){
-    emits('searchShow',searchValue.value)
+    emit('searchShow',searchValue.value)
 }
 </script>
 
@@ -36,7 +38,6 @@ function handleSubmit(){
         single-line
         hide-details
         @click:append-inner="onClick"
-        
     ></v-text-field>
     </v-card-text>
     </v-card>

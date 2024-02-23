@@ -3,6 +3,6 @@ import 'vuetify/dist/vuetify.min.css';
 
 export default createVuetify({
     theme: {
-        defaultTheme: 'dark',
+        defaultTheme: 'light',
     },
 })

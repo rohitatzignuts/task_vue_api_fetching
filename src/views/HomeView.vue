@@ -7,15 +7,15 @@ interface Show {
   id: number;
   image?: { original?: string , medium?:string } | null;
   name: string;
-  rating: { rating: number };
-  genres: string[];
+  rating?: { rating: number };
+  genres?: string[];
   summary: string;
-  officialSite: string | null; 
+  officialSite?: string | null; 
 }
 
 const searchValue = ref<string>('')
 const showList = ref<Show[]>([]);
-
+//fetch data from the api
 const fetchList = async (value: string) => {
     try {
         const response = await window.fetch(`http://api.tvmaze.com/search/shows?q=${value}`);
@@ -27,9 +27,8 @@ const fetchList = async (value: string) => {
         throw error;
     }
 };
-
-
-function handleSearch(value :string){
+//handle user search
+const handleSearch = (value :string) => {
   searchValue.value = value
   fetchList(value)
     .then(shows => showList.value = shows)
@@ -53,10 +52,10 @@ function handleSearch(value :string){
         <ShowCard 
         :showPoster="show?.image?.original || show?.image?.medium"
         :showName="show.name"
-        :avgRating="show.rating.rating"
-        :genres="show.genres.map(genre => genre)"
+        :avgRating="show.rating?.rating"
+        :genres="show.genres?.map(genre => genre)"
         :summary="show.summary"
-        :officialSite="show.officialSite"
+        :officialSite?="show.officialSite"
       />
       </v-col>
     </v-row>

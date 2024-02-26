@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref , defineEmits} from 'vue';
 
-const loaded = ref(false);
+const loaded = ref<Boolean>(false);
 const loading = ref(false);
 const searchValue = ref<string>('the office')
 const emit = defineEmits(['searchShow'])
@@ -14,8 +14,8 @@ const onClick = () => {
         loaded.value = true;
     }, 2000);
 };
-
-function handleSubmit(){
+// emit 'searchShow' event to parent
+const handleSubmit = () => {
     emit('searchShow',searchValue.value)
 }
 </script>

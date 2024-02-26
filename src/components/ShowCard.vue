@@ -53,8 +53,3 @@ const goTo = () => {
     </v-card-actions>
     </v-card>
 </template>
-<style scoped>
-.link{
-    /* color: black; */
-}
-</style>

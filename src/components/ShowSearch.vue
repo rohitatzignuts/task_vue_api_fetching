@@ -2,7 +2,7 @@
 import { ref , defineEmits} from 'vue';
 
 const loaded = ref<Boolean>(false);
-const loading = ref(false);
+const loading = ref<Boolean | any | unknown>(false);
 const searchValue = ref<string>('the office')
 const emit = defineEmits(['searchShow'])
 

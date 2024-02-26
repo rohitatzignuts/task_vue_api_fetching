@@ -52,12 +52,12 @@ const handleSearch = (value: string) => {
         :key="show.id"
         cols="auto">
         <ShowCard 
-        :showPoster="show?.image?.original || show?.image?.medium"
+        :showPoster?="show?.image?.original || show?.image?.medium"
         :showName="show.name"
-        :avgRating="show.rating?.rating"
+        :avgRating?="show.rating?.rating"
         :genres="show.genres ? show.genres.map(genre => genre) : []"
         :summary="show.summary"
-        :officialSite="show.officialSite"
+        :officialSite?="show.officialSite"
       />
       
       </v-col>
